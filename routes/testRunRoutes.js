@@ -2,10 +2,10 @@ var sql = require("seriate");
 var schema = require("../schema");
 
 var config = {
-    user: "",
-    password: "",
+    user: "lumberjack-api",
+    password: "7939<9]hRB",
     server: "boisql203",
-    domain: "BODY",
+    //domain: "BODY",
     database: "Lumberjack"
 };
 
