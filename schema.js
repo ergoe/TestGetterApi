@@ -6,7 +6,7 @@ var sql = require( "seriate" );
 //     });
 // };
 
-var getAllCurrentRuns = function( qaEnvironment, buildName ) {
+var getAllCurrentRuns = function( qaEnvironment, buildName, executionHost ) {
     console.log("BuildName Schema: " + buildName);
     return sql.execute ({
         query: sql.fromFile( "./sql/getTestRuns" ),
@@ -18,6 +18,10 @@ var getAllCurrentRuns = function( qaEnvironment, buildName ) {
             qaEnvironment: {
                 type: sql.NVARCHAR,
                 val: qaEnvironment
+            },
+            executionHost: {
+                type: sql.NVARCHAR,
+                val: executionHost
             }
         }
     });

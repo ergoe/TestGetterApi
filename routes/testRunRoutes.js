@@ -29,7 +29,16 @@ var appRouter = function(app) {
             buildName = '%';
         } 
         
-        schema.getAllCurrentRuns( qaEnvironment, buildName)
+        var executionHost = null;
+        if (req.query.host) {
+            executionHost = req.query.host;
+            console.log(executionHost);
+        } else {
+            executionHost = 'bba048';
+        } 
+        
+        
+        schema.getAllCurrentRuns( qaEnvironment, buildName, executionHost)
             .then( function( results ) {
         res.setHeader('Content-Type', 'application/json')
         res.json(results);
