@@ -65,11 +65,11 @@ var getTestCaseLog = function( testId ) {
 
 var getTestCaseHistory = function( testId ) {
     return sql.execute ({
-        query: sql.fromFile( "./sql/getTestCaseLog" ),
+        query: sql.fromFile( "./sql/getTestCaseHistory" ),
         params: {
             testId: {
                 type: sql.BIGINT,
-                val: testId
+                val: testName
             }
         }
     });

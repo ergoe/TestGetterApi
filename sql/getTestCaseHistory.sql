@@ -3,5 +3,5 @@ SELECT  TOP 10
         , CaseResult
         , Id 
 FROM TestCaseExecution
-WHERE CaseName = @testCaseId AND (CaseResult = 'PASS' OR CaseResult = 'FAILED')
+WHERE CaseName = @testCaseName AND (CaseResult = 'PASS' OR CaseResult = 'FAILED')
 ORDER BY Id DESC

@@ -100,14 +100,14 @@ var appRouter = function(app) {
     })
     
     app.get("/testCaseHistory", function( req, res ) {
-        var testCaseId = null;
-        if (req.query.testId) {
-            testCaseId = req.query.testId;
+        var testCaseName = null;
+        if (req.query.testName) {
+            testCaseName = req.query.testName;
         } else {
-            testCaseId = '%';
+            testCaseName = '%';
         }
         
-        schema.getTestCaseLog( testCaseId )
+        schema.getTestCaseLog( testCaseName )
             .then( function ( results ) {
                 res.setHeader('Content-Type', 'application/json')
                 res.json(results);
