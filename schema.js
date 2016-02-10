@@ -63,12 +63,12 @@ var getTestCaseLog = function( testId ) {
     });
 };
 
-var getTestCaseHistory = function( testId ) {
+var getTestCaseHistory = function( testName ) {
     return sql.execute ({
         query: sql.fromFile( "./sql/getTestCaseHistory" ),
         params: {
-            testId: {
-                type: sql.BIGINT,
+            testName: {
+                type: sql.NVARCHAR,
                 val: testName
             }
         }

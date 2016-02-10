@@ -1,7 +1,7 @@
 SELECT  TOP 10 
-        , CaseStartTime
+          CaseStartTime
         , CaseResult
         , Id 
 FROM TestCaseExecution
-WHERE CaseName = @testCaseName AND (CaseResult = 'PASS' OR CaseResult = 'FAILED')
+WHERE CaseName = @testName AND (CaseResult = 'PASS' OR CaseResult = 'FAILED')
 ORDER BY Id DESC

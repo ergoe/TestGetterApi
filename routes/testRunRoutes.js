@@ -103,11 +103,12 @@ var appRouter = function(app) {
         var testCaseName = null;
         if (req.query.testName) {
             testCaseName = req.query.testName;
+            console.log("TestCaseName: " + testCaseName);
         } else {
             testCaseName = '%';
         }
         
-        schema.getTestCaseLog( testCaseName )
+        schema.getTestCaseHistory( testCaseName )
             .then( function ( results ) {
                 res.setHeader('Content-Type', 'application/json')
                 res.json(results);
