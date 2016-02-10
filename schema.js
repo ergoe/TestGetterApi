@@ -63,9 +63,22 @@ var getTestCaseLog = function( testId ) {
     });
 };
 
+var getTestCaseHistory = function( testId ) {
+    return sql.execute ({
+        query: sql.fromFile( "./sql/getTestCaseLog" ),
+        params: {
+            testId: {
+                type: sql.BIGINT,
+                val: testId
+            }
+        }
+    });
+};
+
 module.exports = {
     getAllCurrentRuns: getAllCurrentRuns,
     getTestClassExecution: getTestClassExecution,
     getTestCaseResults: getTestCaseResults,
-    getTestCaseLog: getTestCaseLog
+    getTestCaseLog: getTestCaseLog,
+    getTestCaseHistory: getTestCaseHistory
 };

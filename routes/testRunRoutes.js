@@ -98,6 +98,23 @@ var appRouter = function(app) {
                 console.log( "Something bad happened: ", err);
             });
     })
+    
+    app.get("/testCaseHistory", function( req, res ) {
+        var testCaseId = null;
+        if (req.query.testId) {
+            testCaseId = req.query.testId;
+        } else {
+            testCaseId = '%';
+        }
+        
+        schema.getTestCaseLog( testCaseId )
+            .then( function ( results ) {
+                res.setHeader('Content-Type', 'application/json')
+                res.json(results);
+            }, function( err ) {
+                console.log( "Something bad happened: ", err);
+            });
+    })
 }
 
 module.exports = appRouter;
