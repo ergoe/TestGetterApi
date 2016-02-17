@@ -130,7 +130,13 @@ var appRouter = function(app) {
         schema.getTestRunResults ( testRunId )
             .then( function ( results ) {
                 res.setHeader('Content-Type', 'application/json')
-                res.json(results);
+                var newObject = {};
+                var resultKey = "";
+                for (var j = 0; j < results.length; j++) {
+                    resultKey = results[j].result;
+                    newObject[resultKey] = results[j].count;
+                }
+                res.json(newObject);
             }, function( err ) {
                 console.log( "Something bad happened: ", err);
             });
