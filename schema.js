@@ -75,10 +75,23 @@ var getTestCaseHistory = function( testName ) {
     });
 };
 
+var getTestRunResults = function( testRun ) {
+    return sql.execute ({
+        query: sql.fromFile( "./sql/getTestRunResults" ),
+        params: {
+            testRun: {
+                type: sql.NVARCHAR,
+                val: testRun
+            }
+        }
+    });
+};
+
 module.exports = {
     getAllCurrentRuns: getAllCurrentRuns,
     getTestClassExecution: getTestClassExecution,
     getTestCaseResults: getTestCaseResults,
     getTestCaseLog: getTestCaseLog,
-    getTestCaseHistory: getTestCaseHistory
+    getTestCaseHistory: getTestCaseHistory,
+    getTestRunResults: getTestRunResults
 };

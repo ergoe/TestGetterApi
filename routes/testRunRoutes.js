@@ -116,6 +116,25 @@ var appRouter = function(app) {
                 console.log( "Something bad happened: ", err);
             });
     })
+    
+    app.get("/testRunResults", function( req, res ) {
+        console.log("Entering testRunResults");
+        var testRunId= null;
+        if (req.query.testRun) {
+            testRunId = req.query.testRun;
+            console.log("TestRunId: " + testRunId);
+        } else {
+            testRunId = '%';
+        }
+        
+        schema.getTestRunResults ( testRunId )
+            .then( function ( results ) {
+                res.setHeader('Content-Type', 'application/json')
+                res.json(results);
+            }, function( err ) {
+                console.log( "Something bad happened: ", err);
+            });
+    })
 }
 
 module.exports = appRouter;
