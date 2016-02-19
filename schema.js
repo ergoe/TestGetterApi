@@ -39,13 +39,17 @@ var getTestClassExecution = function( testRunId ) {
     });
 };
 
-var getTestCaseResults = function( testRunId ) {
+var getTestCaseResults = function( testRunId, testResult ) {
     return sql.execute ({
         query: sql.fromFile( "./sql/getTestCaseResults" ),
         params: {
             testRunId: {
                 type: sql.BIGINT,
                 val: testRunId
+            },
+            testResult: {
+                type: sql.NVARCHAR,
+                val: testResult
             }
         }
     });

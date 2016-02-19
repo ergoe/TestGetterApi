@@ -73,7 +73,14 @@ var appRouter = function(app) {
             testRunId = '%';
         }
         
-        schema.getTestCaseResults( testRunId )
+        var testResult = null;
+        if (req.query.result) {
+            testResult = req.query.result
+        } else {
+            testResult = '%';
+        }
+        
+        schema.getTestCaseResults( testRunId, testResult )
             .then( function ( results ) {
                 res.setHeader('Content-Type', 'application/json')
                 res.json(results);
