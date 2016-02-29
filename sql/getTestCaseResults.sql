@@ -7,6 +7,7 @@ SELECT  TestCaseExecution.Id AS testCaseId
         , TestCaseExecution.ErrorMessage AS errorMessage
         , TestCaseExecution.TestClassExecution_id AS testClassExecutionId
         , TestCaseExecution.Browser AS browser
+        , TestCaseExecution.Description AS tags
         , TestClassExecution.ClassName AS className
         , TestClassExecution.TestRun_id AS testRunId
 
