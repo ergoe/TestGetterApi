@@ -39,7 +39,8 @@ var getTestClassExecution = function( testRunId ) {
     });
 };
 
-var getTestCaseResults = function( testRunId, testResult ) {
+var getTestCaseResults = function( testRunId, testResult, testTags ) {
+    console.log("testTags: " + testTags);
     return sql.execute ({
         query: sql.fromFile( "./sql/getTestCaseResults" ),
         params: {
@@ -50,6 +51,10 @@ var getTestCaseResults = function( testRunId, testResult ) {
             testResult: {
                 type: sql.NVARCHAR,
                 val: testResult
+            },
+            testTags: {
+                type: sql.NVARCHAR,
+                val: testTags
             }
         }
     });

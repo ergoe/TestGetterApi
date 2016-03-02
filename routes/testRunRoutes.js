@@ -80,8 +80,18 @@ var appRouter = function(app) {
             testResult = '%';
         }
         
-        schema.getTestCaseResults( testRunId, testResult )
+        var testTags = null;
+        if (req.query.tags) {
+            console.log("Enter if of TestTags:")
+            testTags = req.query.tags
+        } else {
+            console.log("Enter else of TestTags:")
+            testTags = '%';
+        }
+        
+        schema.getTestCaseResults( testRunId, testResult, testTags )
             .then( function ( results ) {
+                console.log("Your Mum: " + testTags);
                 res.setHeader('Content-Type', 'application/json')
                 res.json(results);
             }, function( err ) {
