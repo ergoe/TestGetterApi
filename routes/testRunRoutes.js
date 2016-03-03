@@ -82,21 +82,33 @@ var appRouter = function(app) {
         
         var testTags = null;
         if (req.query.tags) {
-            console.log("Enter if of TestTags:")
-            testTags = req.query.tags
+            console.log("Enter if of TestTags: " + 'TestCaseExecution.Description LIKE  ' + req.query.tags);
+            
+            testTags = req.query.tags;
+            
         } else {
             console.log("Enter else of TestTags:")
-            testTags = '%';
         }
         
-        schema.getTestCaseResults( testRunId, testResult, testTags )
+        if (testTags) {
+            schema.getTestCaseResultsWithTestTags( testRunId, testResult, testTags )
+                .then( function ( results ) {
+                    console.log("Your Mum: " + testTags);
+                    res.setHeader('Content-Type', 'application/json')
+                    res.json(results);
+                }, function( err ) {
+                    console.log( "Something bad happened: ", err);
+                });
+        } else {
+            schema.getTestCaseResultsNoTestTags( testRunId, testResult, testTags )
             .then( function ( results ) {
-                console.log("Your Mum: " + testTags);
+                console.log("No Test Tags: " + testTags);
                 res.setHeader('Content-Type', 'application/json')
                 res.json(results);
             }, function( err ) {
                 console.log( "Something bad happened: ", err);
             });
+        }
     })
     
     app.get("/testCaseLog", function( req, res ) {

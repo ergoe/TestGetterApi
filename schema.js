@@ -39,10 +39,10 @@ var getTestClassExecution = function( testRunId ) {
     });
 };
 
-var getTestCaseResults = function( testRunId, testResult, testTags ) {
+var getTestCaseResultsWithTestTags = function( testRunId, testResult, testTags ) {
     console.log("testTags: " + testTags);
     return sql.execute ({
-        query: sql.fromFile( "./sql/getTestCaseResults" ),
+        query: sql.fromFile( "./sql/getTestCaseResultsWithTags" ),
         params: {
             testRunId: {
                 type: sql.BIGINT,
@@ -55,6 +55,23 @@ var getTestCaseResults = function( testRunId, testResult, testTags ) {
             testTags: {
                 type: sql.NVARCHAR,
                 val: testTags
+            }
+        }
+    });
+};
+
+var getTestCaseResultsNoTestTags = function( testRunId, testResult) {
+    //console.log("testTags: " + testTags);
+    return sql.execute ({
+        query: sql.fromFile( "./sql/getTestCaseResultsNoTestTags" ),
+        params: {
+            testRunId: {
+                type: sql.BIGINT,
+                val: testRunId
+            },
+            testResult: {
+                type: sql.NVARCHAR,
+                val: testResult
             }
         }
     });
@@ -99,8 +116,9 @@ var getTestRunResults = function( testRun ) {
 module.exports = {
     getAllCurrentRuns: getAllCurrentRuns,
     getTestClassExecution: getTestClassExecution,
-    getTestCaseResults: getTestCaseResults,
+    getTestCaseResultsWithTestTags: getTestCaseResultsWithTestTags,
     getTestCaseLog: getTestCaseLog,
     getTestCaseHistory: getTestCaseHistory,
-    getTestRunResults: getTestRunResults
+    getTestRunResults: getTestRunResults,
+    getTestCaseResultsNoTestTags: getTestCaseResultsNoTestTags
 };
